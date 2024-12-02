@@ -13,9 +13,8 @@ router.get("/", async (req, res, next) => {
     }
     });
 
-    router.get("/:id", async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
     const { id } = req.params;
-
     try {
         const targetItem = await Item.findByPk(id);
         if (targetItem) {
@@ -26,7 +25,7 @@ router.get("/", async (req, res, next) => {
     } catch (error) {
         next(error);
     }
-    });
+});
 
     router.post(
         "/",

@@ -377,6 +377,15 @@ describe("Auth", () => {
     const response = await request(app).post("/auth/login").send(body);
     expect(response.status).toBe(400);
   });
+
+  test("POST /auth/register should return an error for invalid data", async () => {
+    const body = {
+        name: "Test User",
+    };
+    const response = await request(app).post("/auth/register").send(body);
+    expect(response.status).toBe(400);
+    expect(response.body).toHaveProperty("errors");
+  });
 });
 
 describe("Payment", () => {
@@ -401,7 +410,7 @@ describe("404", () => {
 });
 
 describe("Error handling middleware", () => {
-  it("should handle an error thrown in the existing route", async () => {
+  test("should handle an error thrown in the existing route", async () => {
     const originalHandler = app._router.stack[1].handle;
 
     app._router.stack[1].handle = (req, res, next) => {
@@ -415,3 +424,278 @@ describe("Error handling middleware", () => {
     app._router.stack[1].handle = originalHandler;
   });
 });
+
+describe("POST /auth/login", () => {
+  it("should call next(error) when an error occurs", async () => {
+      const error = new Error('Test error');
+      jest.spyOn(User, 'findOne').mockImplementation(() => { throw error; });
+
+      const response = await request(app)
+          .post('/auth/login')
+          .send({ email: 'test@example.com', password: 'password' });
+
+      expect(response.status).toBe(500);
+      expect(response.body.error).toBe('Test error');
+  });
+});
+
+describe("GET /items", () => {
+  it("should call next(error) when an error occurs", async () => {
+      const error = new Error('Test error');
+      jest.spyOn(Item, 'findAll').mockImplementation(() => { throw error; });
+
+      const response = await request(app).get('/items');
+
+      expect(response.status).toBe(500);
+      expect(response.body.error).toBe('Test error');
+  });
+});
+
+describe("GET /items/:id", () => {
+  it("should call next(error) when an error occurs", async () => {
+      const error = new Error('Test error');
+      jest.spyOn(Item, 'findAll').mockImplementation(() => { throw error; });
+
+      const response = await request(app).get('/items/1');
+
+      expect(response.status).toBe(500);
+      expect(response.body.error).toBe('Test error');
+  });
+});
+
+describe("POST /items", () => {
+  it("should call next(error) when an error occurs", async () => {
+      const error = new Error('Test error');
+      jest.spyOn(Item, 'create').mockImplementation(() => { throw error; });
+
+      const response = await request(app)
+          .post('/items')
+          .send({
+              name: 'Test Item',
+              description: 'Test Description',
+              category: 'Test Category',
+              price: 10.0,
+              image: 'http://example.com/image.jpg'
+          });
+
+      expect(response.status).toBe(500);
+      expect(response.body.error).toBe('Test error');
+  });
+});
+
+describe("PUT /items/:id", () => {
+  it("should call next(error) when an error occurs", async () => {
+      const error = new Error('Test error');
+      jest.spyOn(Item, 'update').mockImplementation(() => { throw error; });
+
+      const response = await request(app)
+          .put('/items/1')
+          .send({
+              name: 'Test Item',
+              description: 'Test Description',
+              category: 'Test Category',
+              price: 10.0,
+              image: 'http://example.com/image.jpg'
+          });
+
+      expect(response.status).toBe(500);
+      expect(response.body.error).toBe('Test error');
+  });
+});
+
+describe("DELETE /items/:id", () => {
+  it("should call next(error) when an error occurs", async () => {
+      const error = new Error('Test error');
+      jest.spyOn(Item, 'destroy').mockImplementation(() => { throw error; });
+
+      const response = await request(app).delete('/items/1')
+
+      expect(response.status).toBe(500);
+      expect(response.body.error).toBe('Test error');
+  });
+});
+
+describe("GET /orders", () => {
+  it("should call next(error) when an error occurs", async () => {
+      const error = new Error('Test error');
+      jest.spyOn(Order, 'findAll').mockImplementation(() => { throw error; });
+
+      const response = await request(app).get('/orders')
+
+      expect(response.status).toBe(500);
+      expect(response.body.error).toBe('Test error');
+  });
+});
+
+describe("GET /orders/:id", () => {
+  it("should call next(error) when an error occurs", async () => {
+      const error = new Error('Test error');
+      jest.spyOn(Order, 'findByPk').mockImplementation(() => { throw error; });
+
+      const response = await request(app).get('/orders/1')
+
+      expect(response.status).toBe(500);
+      expect(response.body.error).toBe('Test error');
+  });
+});
+
+describe("POST /orders/", () => {
+  it("should call next(error) when an error occurs", async () => {
+      const error = new Error('Test error');
+      jest.spyOn(Order, 'create').mockImplementation(() => { throw error; });
+
+      const response = await request(app).post('/orders')
+
+      expect(response.status).toBe(500);
+      expect(response.body.error).toBe('Test error');
+  });
+});
+
+describe("POST /orders/:userId", () => {
+  it("should call next(error) when an error occurs", async () => {
+      const error = new Error('Test error');
+      jest.spyOn(Order, 'findByPk').mockImplementation(() => { throw error; });
+
+      const response = await request(app).post('/orders/1')
+
+      expect(response.status).toBe(500);
+      expect(response.body.error).toBe('Test error');
+  });
+});
+
+describe("PUT /orders/:id", () => {
+  it("should call next(error) when an error occurs", async () => {
+      const error = new Error('Test error');
+      jest.spyOn(Order, 'findByPk').mockImplementation(() => { throw error; });
+
+      const response = await request(app).put('/orders/1')
+
+      expect(response.status).toBe(500);
+      expect(response.body.error).toBe('Test error');
+  });
+});
+
+describe("DELETE /orders/:id", () => {
+  it("should call next(error) when an error occurs", async () => {
+      const error = new Error('Test error');
+      jest.spyOn(Order, 'destroy').mockImplementation(() => { throw error; });
+
+      const response = await request(app).delete('/orders/1')
+
+      expect(response.status).toBe(500);
+      expect(response.body.error).toBe('Test error');
+  });
+});
+
+describe("GET /users", () => {
+  it("should call next(error) when an error occurs", async () => {
+      const error = new Error('Test error');
+      jest.spyOn(User, 'findAll').mockImplementation(() => { throw error; });
+
+      const response = await request(app).get('/users')
+
+      expect(response.status).toBe(500);
+      expect(response.body.error).toBe('Test error');
+  });
+});
+
+describe("GET /users/:id", () => {
+  it("should call next(error) when an error occurs", async () => {
+      const error = new Error('Test error');
+      jest.spyOn(User, 'findByPk').mockImplementation(() => { throw error; });
+
+      const response = await request(app).get('/users/1')
+
+      expect(response.status).toBe(500);
+      expect(response.body.error).toBe('Test error');
+  });
+});
+
+describe("GET /:id/orders", () => {
+  it("should call next(error) when an error occurs", async () => {
+      const error = new Error('Test error');
+      jest.spyOn(User, 'findByPk').mockImplementation(() => { throw error; });
+
+      const response = await request(app).get('/users/1/orders')
+
+      expect(response.status).toBe(500);
+      expect(response.body.error).toBe('Test error');
+  });
+});
+
+describe("POST /users", () => {
+  it("should call next(error) when an error occurs", async () => {
+      const error = new Error('Test error');
+      jest.spyOn(User, 'create').mockImplementation(() => { throw error; });
+
+      const response = await request(app)
+          .post('/users')
+          .send({
+              name: 'Test User',
+              email: 'test@example.com',
+              password: 'StrongPassword123!',
+              cart: [],
+              isAdmin: false
+          });
+
+      expect(response.status).toBe(500);
+      expect(response.body.error).toBe('Test error');
+  });
+});
+
+describe("PUT /users/:id", () => {
+  it("should call next(error) when an error occurs", async () => {
+      const error = new Error('Test error');
+      jest.spyOn(User, 'findByPk').mockImplementation(() => { throw error; });
+
+      const response = await request(app)
+          .put('/users/1')
+          .send({
+              name: 'Test User',
+              email: 'test@example.com',
+              password: 'StrongPassword123!',
+              cart: [],
+              isAdmin: false
+          });
+
+      expect(response.status).toBe(500);
+      expect(response.body.error).toBe('Test error');
+  });
+});
+
+describe("PUT /users/:id/addToCart/:itemId", () => {
+  it("should call next(error) when an error occurs", async () => {
+    const error = new Error('Test error');
+    jest.spyOn(User, 'findByPk').mockImplementation(() => { throw error; });
+
+    const response = await request(app).put('/users/1/addToCart/1');
+
+    expect(response.status).toBe(500);
+    expect(response.body.error).toBe('Test error');
+  });
+});
+
+describe("PUT /users/:id/updateCart", () => {
+  it("should call next(error) when an error occurs", async () => {
+    const error = new Error('Test error');
+    jest.spyOn(User, 'findByPk').mockImplementation(() => { throw error; });
+
+    const response = await request(app).put('/users/1/updateCart');
+
+    expect(response.status).toBe(500);
+    expect(response.body.error).toBe('Test error');
+  });
+});
+
+describe("DELETE /users/:id/", () => {
+  it("should call next(error) when an error occurs", async () => {
+    const error = new Error('Test error');
+    jest.spyOn(User, 'destroy').mockImplementation(() => { throw error; });
+
+    const response = await request(app).delete('/users/1');
+
+    expect(response.status).toBe(500);
+    expect(response.body.error).toBe('Test error');
+  });
+});
+
