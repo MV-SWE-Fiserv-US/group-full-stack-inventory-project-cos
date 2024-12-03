@@ -703,6 +703,9 @@ describe("next(errors)", () => {
 
   test("POST /auth/login should call next(error) when an error occurs", async () => {
     const error = new Error("Test error");
+    error.statusCode = 398
+    console.log("ERRRRRR", error);
+    
     jest.spyOn(User, "findOne").mockImplementation(() => {
       throw error;
     });
@@ -714,4 +717,6 @@ describe("next(errors)", () => {
     expect(response.status).toBe(500);
     expect(response.body.error).toBe("Test error");
   });
+
+  
 });
