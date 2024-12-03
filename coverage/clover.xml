@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1733178061998" clover="3.2.0">
-  <project timestamp="1733178061998" name="All files">
+<coverage generated="1733239118764" clover="3.2.0">
+  <project timestamp="1733239118764" name="All files">
     <metrics statements="237" coveredstatements="237" conditionals="20" coveredconditionals="19" methods="26" coveredmethods="26" elements="283" coveredelements="282" complexity="0" loc="237" ncloc="237" packages="3" files="12" classes="12"/>
     <package name="server">
       <metrics statements="23" coveredstatements="23" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
-      <file name="app.js" path="/Users/john.arocha/Multiverse/projects/group-full-stack-inventory-project-cos/server/app.js">
+      <file name="app.js" path="/Users/codey.gallup/Desktop/Code/group-full-stack-inventory-project-cos/server/app.js">
         <metrics statements="19" coveredstatements="19" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -26,7 +26,7 @@
         <line num="32" count="21" type="stmt"/>
         <line num="36" count="1" type="stmt"/>
       </file>
-      <file name="db.js" path="/Users/john.arocha/Multiverse/projects/group-full-stack-inventory-project-cos/server/db.js">
+      <file name="db.js" path="/Users/codey.gallup/Desktop/Code/group-full-stack-inventory-project-cos/server/db.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -36,19 +36,19 @@
     </package>
     <package name="server.models">
       <metrics statements="22" coveredstatements="22" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="Item.js" path="/Users/john.arocha/Multiverse/projects/group-full-stack-inventory-project-cos/server/models/Item.js">
+      <file name="Item.js" path="/Users/codey.gallup/Desktop/Code/group-full-stack-inventory-project-cos/server/models/Item.js">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
       </file>
-      <file name="Order.js" path="/Users/john.arocha/Multiverse/projects/group-full-stack-inventory-project-cos/server/models/Order.js">
+      <file name="Order.js" path="/Users/codey.gallup/Desktop/Code/group-full-stack-inventory-project-cos/server/models/Order.js">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
       </file>
-      <file name="User.js" path="/Users/john.arocha/Multiverse/projects/group-full-stack-inventory-project-cos/server/models/User.js">
+      <file name="User.js" path="/Users/codey.gallup/Desktop/Code/group-full-stack-inventory-project-cos/server/models/User.js">
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -58,7 +58,7 @@
         <line num="17" count="3" type="stmt"/>
         <line num="20" count="1" type="stmt"/>
       </file>
-      <file name="index.js" path="/Users/john.arocha/Multiverse/projects/group-full-stack-inventory-project-cos/server/models/index.js">
+      <file name="index.js" path="/Users/codey.gallup/Desktop/Code/group-full-stack-inventory-project-cos/server/models/index.js">
         <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -73,7 +73,7 @@
     </package>
     <package name="server.routes">
       <metrics statements="192" coveredstatements="192" conditionals="18" coveredconditionals="18" methods="23" coveredmethods="23"/>
-      <file name="auth.js" path="/Users/john.arocha/Multiverse/projects/group-full-stack-inventory-project-cos/server/routes/auth.js">
+      <file name="auth.js" path="/Users/codey.gallup/Desktop/Code/group-full-stack-inventory-project-cos/server/routes/auth.js">
         <metrics statements="23" coveredstatements="23" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -99,7 +99,7 @@
         <line num="43" count="1" type="stmt"/>
         <line num="47" count="1" type="stmt"/>
       </file>
-      <file name="index.js" path="/Users/john.arocha/Multiverse/projects/group-full-stack-inventory-project-cos/server/routes/index.js">
+      <file name="index.js" path="/Users/codey.gallup/Desktop/Code/group-full-stack-inventory-project-cos/server/routes/index.js">
         <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -110,7 +110,7 @@
         <line num="9" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
       </file>
-      <file name="items.js" path="/Users/john.arocha/Multiverse/projects/group-full-stack-inventory-project-cos/server/routes/items.js">
+      <file name="items.js" path="/Users/codey.gallup/Desktop/Code/group-full-stack-inventory-project-cos/server/routes/items.js">
         <metrics statements="47" coveredstatements="47" conditionals="8" coveredconditionals="8" methods="5" coveredmethods="5"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -160,7 +160,7 @@
         <line num="100" count="1" type="stmt"/>
         <line num="104" count="1" type="stmt"/>
       </file>
-      <file name="orders.js" path="/Users/john.arocha/Multiverse/projects/group-full-stack-inventory-project-cos/server/routes/orders.js">
+      <file name="orders.js" path="/Users/codey.gallup/Desktop/Code/group-full-stack-inventory-project-cos/server/routes/orders.js">
         <metrics statements="48" coveredstatements="48" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="7"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -211,7 +211,7 @@
         <line num="76" count="1" type="stmt"/>
         <line num="80" count="1" type="stmt"/>
       </file>
-      <file name="payment.js" path="/Users/john.arocha/Multiverse/projects/group-full-stack-inventory-project-cos/server/routes/payment.js">
+      <file name="payment.js" path="/Users/codey.gallup/Desktop/Code/group-full-stack-inventory-project-cos/server/routes/payment.js">
         <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -224,7 +224,7 @@
         <line num="16" count="1" type="stmt"/>
         <line num="20" count="1" type="stmt"/>
       </file>
-      <file name="users.js" path="/Users/john.arocha/Multiverse/projects/group-full-stack-inventory-project-cos/server/routes/users.js">
+      <file name="users.js" path="/Users/codey.gallup/Desktop/Code/group-full-stack-inventory-project-cos/server/routes/users.js">
         <metrics statements="56" coveredstatements="56" conditionals="4" coveredconditionals="4" methods="8" coveredmethods="8"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
