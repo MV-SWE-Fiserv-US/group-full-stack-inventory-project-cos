@@ -27,11 +27,17 @@ export default function Navbar() {
       });
       setTimeout(() => {
         localStorage.removeItem("token");
-        navigate("/");
+        navigate("/auth");
         location.reload()
-      }, 2000);
+      }, 1000);
     }
   };
+
+  clearLocal = () => {
+    localStorage.removeItem("token");
+    navigate("/auth");
+    location.reload()
+  }
 
   return (
     <>

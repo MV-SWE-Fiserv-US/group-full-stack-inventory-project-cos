@@ -74,7 +74,7 @@ export default function Login() {
       setTimeout(() => {
         navigate("/");
         location.reload();
-      }, 2000);
+      }, 1000);
     } catch (error) {
       console.error("Error during registration:", error);
       toast.error(`${error}`, {
@@ -101,11 +101,16 @@ export default function Login() {
 
       const data = await response.json();
       console.log("Registration successful", data);
+      localStorage.setItem("token", data.token);
       setLoginOrRegister("login");
       setLoginFormData({
         email: "",
         password: "",
       });
+      setTimeout(() => {
+        navigate("/");
+        location.reload();
+      }, 1000);
     } catch (error) {
       console.error("Error during registration:", error);
     }
@@ -114,7 +119,7 @@ export default function Login() {
   const loginPrompts = {
     login: (
       <section className="h-screen w-full flex justify-center py-12 px-12">
-        <div className="w-full max-w-md rounded-lg shadow-lg border border-gray-300 py-2 px-4 max-h-[50vh] flex flex-col">
+        <div className="w-full max-w-md rounded-lg shadow-lg border border-gray-300 py-2 px-4 max-h-[50vh] flex flex-col ">
           <div className="px-4 sm:px-0">
             <h3 className="text-2xl font-semibold text-gray-900">Login</h3>
             <p className="mt-1 max-w-2xl text-sm text-gray-500">
@@ -160,6 +165,7 @@ export default function Login() {
             </div>
             <div className="mt-auto flex space-x-4">
               <button
+                type="button"
                 className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition w-full"
                 onClick={() => setLoginOrRegister(null)}
               >
@@ -267,6 +273,7 @@ export default function Login() {
             </div>
             <div className="mt-auto flex space-x-4">
               <button
+                type="button"
                 className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition w-full"
                 onClick={() => setLoginOrRegister(null)}
               >
@@ -290,14 +297,14 @@ export default function Login() {
       {loginOrRegister === "register" && loginPrompts.register}
       {!loginOrRegister && (
         <section className="h-screen w-full flex justify-center py-12 px-12">
-          <div className="w-full max-w-md rounded-lg shadow-lg border border-gray-300 py-2 px-4 max-h-[30vh] flex flex-col">
-            <div className="px-4 sm:px-0">
+          <div className="w-full max-w-md rounded-lg shadow-lg border border-gray-300 py-2 px-4 max-h-[30vh] flex flex-col justify-around">
+            <div className="px-4 sm:px-0 text-center">
               <h3 className="text-2xl font-semibold text-gray-900">Welcome</h3>
               <p className="mt-1 max-w-2xl text-sm text-gray-500">
                 Please choose an option to proceed.
               </p>
             </div>
-            <div className="flex flex-col mt-6 flex-grow">
+            <div className="flex flex-col mt-6">
               <div className="mb-4">
                 <button
                   className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition w-full mb-4"
