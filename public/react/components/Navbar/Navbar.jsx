@@ -1,14 +1,18 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../../AuthProvider";
 import vaultIcon from "../../../assets/vault-icon.svg";
-import { NavLink, useNavigate } from "react-router";
+import { NavLink, useLocation, useNavigate, useParams } from "react-router";
 import { toast, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Categories from "../Categories/Categories";
 
 export default function Navbar() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const { isLoggedIn, isAdmin } = useContext(AuthContext);
+
+  const params = useLocation();
+  const hasNoParams = params.pathname === "/";
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -28,16 +32,10 @@ export default function Navbar() {
       setTimeout(() => {
         localStorage.removeItem("token");
         navigate("/auth");
-        location.reload()
+        location.reload();
       }, 1000);
     }
   };
-
-  clearLocal = () => {
-    localStorage.removeItem("token");
-    navigate("/auth");
-    location.reload()
-  }
 
   return (
     <>
@@ -126,6 +124,7 @@ export default function Navbar() {
         </div>
         <hr className="border-t border-gray-700"></hr>
       </nav>
+      {hasNoParams && <Categories />}
     </>
   );
 }
