@@ -11,6 +11,9 @@ export const AuthProvider = ({ children }) => {
   const [userEmail, setUserEmail] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
   const [clientSecret, setClientSecret] = useState("");
+  const [items, setItems] = useState([]);
+  const [filteredItems, setFilteredItems] = useState(null);
+  const [categories, setCategories] = useState([]);
 
   const getClientSecret = async () => {
     try {
@@ -27,9 +30,34 @@ export const AuthProvider = ({ children }) => {
       console.log(error);
     }
   };
-  useEffect(() => {
-    getClientSecret();
-  }, []);
+
+  async function fetchItems() {
+    try {
+      const response = await fetch(`${apiURL}/items`);
+      const itemsData = await response.json();
+
+      const uniqueCategories = Array.from(
+        new Set(itemsData.map((item) => item.category))
+      );
+      setCategories(uniqueCategories);
+
+      setItems(itemsData);
+    } catch (err) {
+      console.log("Oh no an error! ", err);
+    }
+  }
+
+  const handleCategory = (e) => {
+    e.preventDefault();
+    const category = e.target.value;
+    if (category === "All") {
+      setFilteredItems(null);
+      fetchItems();
+    } else {
+      const filterItems = items.filter((item) => item.category === category);
+      setFilteredItems(filterItems);
+    }
+  };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -43,11 +71,25 @@ export const AuthProvider = ({ children }) => {
         setIsAdmin(true);
       }
     }
+
+    getClientSecret();
+    fetchItems();
   }, []);
 
   return (
     <AuthContext.Provider
-      value={{ isAdmin, isLoggedIn, userId, username, userEmail, clientSecret }}
+      value={{
+        isAdmin,
+        isLoggedIn,
+        userId,
+        username,
+        userEmail,
+        clientSecret,
+        items,
+        categories,
+        filteredItems,
+        handleCategory,
+      }}
     >
       {children}
     </AuthContext.Provider>

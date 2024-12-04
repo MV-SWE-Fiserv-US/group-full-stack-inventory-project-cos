@@ -1,11 +1,9 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import "regenerator-runtime/runtime";
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router";
+import { createBrowserRouter, RouterProvider } from "react-router";
 import App from "./components/App";
 import Cart from "./components/Cart/Cart";
-import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
 import ItemDescription from "./components/ItemDescription/ItemDescription";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Login from "./components/Login/Login";
@@ -13,23 +11,16 @@ import { AuthProvider } from "./AuthProvider";
 import { ToastContainer } from "react-toastify";
 import Checkout from "./components/Forms/CheckoutForm/Checkout";
 import Success from "./components/Success/Success";
+import Home from "./components/Home/Home";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <>
-        <Navbar />
-        <div className="flex flex-col min-h-[95vh] justify-center">
-          <Outlet />
-        </div>
-        <Footer />
-      </>
-    ),
+    element: <App />,
     children: [
       {
         path: "/",
-        element: <App />,
+        element: <Home />,
       },
       {
         path: "/cart",
