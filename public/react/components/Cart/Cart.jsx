@@ -138,7 +138,7 @@ const Cart = () => {
                           <img
                             src={item.image}
                             alt={item.name}
-                            className="w-16 h-16 rounded-md object-cover"
+                            className="w-16 h-16 rounded-md object-contain"
                           />
                           <div className="mx-4 px-4">
                             <h3 className="text-md font-medium text-gray-800">
@@ -191,7 +191,7 @@ const Cart = () => {
                 {cartItems.map((item) => {
                   return (
                     <div
-                      className="flex justify-between w-full text-xs"
+                      className="flex justify-between w-full text-sm"
                       key={item.id}
                     >
                       <p className="w-1/2">

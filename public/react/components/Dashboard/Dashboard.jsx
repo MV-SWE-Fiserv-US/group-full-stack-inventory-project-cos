@@ -95,7 +95,7 @@ const Dashboard = () => {
   return (
     <>
       <section
-        className={"w-full flex justify-center items-center py-12 px-12"}
+        className={"w-full flex justify-center items-center py-12 px-12 " + (showForm ? "blur" : "")}
       >
         {isLoggedIn ? (
           <div className="w-full rounded-lg shadow-lg border border-gray-300 py-4 px-4 bg-white flex flex-col gap-y-8">
