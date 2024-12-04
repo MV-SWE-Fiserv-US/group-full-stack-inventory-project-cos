@@ -11,8 +11,8 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { isLoggedIn, isAdmin } = useContext(AuthContext);
 
- const params = useLocation()
- const hasNoParams = params.pathname === "/"
+  const params = useLocation();
+  const hasNoParams = params.pathname === "/";
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -32,7 +32,7 @@ export default function Navbar() {
       setTimeout(() => {
         localStorage.removeItem("token");
         navigate("/auth");
-        location.reload()
+        location.reload();
       }, 1000);
     }
   };
@@ -124,7 +124,7 @@ export default function Navbar() {
         </div>
         <hr className="border-t border-gray-700"></hr>
       </nav>
-        {hasNoParams && <Categories />}
+      {hasNoParams && <Categories />}
     </>
   );
 }

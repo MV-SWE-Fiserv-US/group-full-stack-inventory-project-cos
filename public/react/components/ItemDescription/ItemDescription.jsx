@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import { useParams, useNavigate } from "react-router";
-import { toast, Slide } from "react-toastify";
 import { AuthContext } from "../../AuthProvider";
 import UpdateItem from "../Forms/UpdateItemForm/UpdateItem";
 import DeleteItem from "../Forms/DeleteItemForm/DeleteItem";
 import apiURL from "../../api";
 import "react-toastify/dist/ReactToastify.css";
 import Stars from "../Stars/Stars";
+import { useCart } from "../../hooks/useCart";
 
 export default function ItemDescription() {
   const { id } = useParams();
@@ -22,6 +22,7 @@ export default function ItemDescription() {
     price: 0,
     image: "",
   });
+  const { handleAddItem } = useCart();
 
   function toggleAdminMenu() {
     setAdminView(!adminView);
@@ -38,41 +39,6 @@ export default function ItemDescription() {
     } catch (err) {
       console.log("Oh no an error! ", err);
     }
-  }
-
-  async function addItemToCart(userId, itemId) {
-    try {
-      const response = await fetch(
-        `${apiURL}/users/${userId}/addToCart/${itemId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Item could not be added to your cart!");
-      }
-      toast.success("Item added to cart 🛒", {
-        position: "top-center",
-        autoClose: 1500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        transition: Slide,
-      });
-    } catch (err) {
-      console.log("Oh no an error! ", err);
-      toast.error("Item could not be added to cart 😰 Try again later.", {
-        position: "top-center",
-      });
-    }
-  }
-
-  function handleAddItem(itemId) {
-    addItemToCart(userId, itemId);
   }
 
   useEffect(() => {
