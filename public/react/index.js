@@ -20,7 +20,7 @@ const router = createBrowserRouter([
     element: (
       <>
         <Navbar />
-        <div className="flex flex-col min-h-[90vh] justify-center">
+        <div className="flex flex-col min-h-[95vh] justify-center">
           <Outlet />
         </div>
         <Footer />
