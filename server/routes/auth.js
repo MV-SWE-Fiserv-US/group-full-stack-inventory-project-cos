@@ -12,7 +12,12 @@ router.post("/register", async (req, res, next) => {
   try {
     const user = await User.create({ name, email, password, isAdmin });
     const token = jwt.sign(
-      { id: user.id, email: user.email, isAdmin: user.isAdmin },
+      {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        isAdmin: user.isAdmin,
+      },
       JWT_SECRET,
       { expiresIn: "1h" }
     );

@@ -20,28 +20,28 @@ export default function Success() {
 
   return (
     <>
-      <section className="max-w-6xl h-full mx-auto bg-white shadow-2xl rounded-lg overflow-hidden border border-gray-200 flex mt-4">
-        <div className="p-4 flex flex-col justify-around flex-wrap ">
+ <section className="max-w-6xl h-full mx-auto bg-white shadow-2xl rounded-lg overflow-hidden border border-gray-200 flex mt-4 justify-center items-center">
+        <div className="p-6 flex flex-col justify-around flex-wrap outline gap-y-8">
           <div className="grid grid-cols-2">
             <h2 className="text-xl font-semibold text-gray-800">
-              Your order has been placed!
+              Thank you for your purchase!
             </h2>
 
             <p>Your order number is: {order && order.id}</p>
-            <p>Thank you for your purchase!</p>
+            <p>Your order has been placed!</p>
           </div>
-          <p className="text-gray-600 mt-2"></p>
-          <div className="mt-4 flex flex-col justify-between items-center">
+          <div className="mt-4 flex flex-col">
             {order &&
               order.items.map((item) => (
-                <div key={item.id} className="flex w-full">
-                  <img src={item.image} alt="" width={50} style={{ margin: '10px 0' }} />
-                  <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                    <p style={{ margin: '0px 10px' }} >{item.name}</p>
-                    <p style={{ margin: '0px 10px' }}>${item.price.toFixed(2)}</p>
+                <div key={item.id} className="grid grid-cols-3 w-full mb-8">
+                  <img src={item.image} alt="item-image" width={60} height={60}  />
+                  <div className="flex flex-col col-span-2 gap-2">
+                    <p>{item.name}</p>
+                    <p className="self-end">${item.price.toFixed(2)}</p>
                   </div>
                 </div>
               ))}
+          </div>
             <div className="grid w-full">
               <p>
                 Your order status is:
@@ -65,7 +65,7 @@ export default function Success() {
                   ${order && order.total.toFixed(2)}
                 </span>
               </p>
-            </div>
+            
           </div>
         </div>
       </section>

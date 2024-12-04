@@ -118,8 +118,8 @@ export default function Login() {
 
   const loginPrompts = {
     login: (
-      <section className="h-screen w-full flex justify-center py-12 px-12">
-        <div className="w-full max-w-md rounded-lg shadow-lg border border-gray-300 py-2 px-4 max-h-[50vh] flex flex-col ">
+      <section className="w-full flex justify-center py-12 px-12">
+        <div className="w-full max-w-md rounded-lg shadow-lg border border-gray-300 py-2 px-4 max-h-[50vh] flex flex-col gap-y-8">
           <div className="px-4 sm:px-0">
             <h3 className="text-2xl font-semibold text-gray-900">Login</h3>
             <p className="mt-1 max-w-2xl text-sm text-gray-500">
@@ -183,8 +183,8 @@ export default function Login() {
       </section>
     ),
     register: (
-      <section className="h-screen w-full flex justify-center py-12 px-12">
-        <div className="w-full max-w-md rounded-lg shadow-lg border border-gray-300 py-2 px-4 max-h-[60vh] flex flex-col">
+      <section className="w-full flex justify-center py-12 px-12">
+        <div className="w-full max-w-md rounded-lg shadow-lg border border-gray-300 py-2 px-4 max-h-[60vh] flex flex-col gap-y-10">
           <div className="px-4 sm:px-0">
             <h3 className="text-2xl font-semibold text-gray-900">Register</h3>
             <p className="mt-1 max-w-2xl text-sm text-gray-500">
@@ -296,8 +296,8 @@ export default function Login() {
       {loginOrRegister === "login" && loginPrompts.login}
       {loginOrRegister === "register" && loginPrompts.register}
       {!loginOrRegister && (
-        <section className="h-screen w-full flex justify-center py-12 px-12">
-          <div className="w-full max-w-md rounded-lg shadow-lg border border-gray-300 py-2 px-4 max-h-[30vh] flex flex-col justify-around">
+        <section className="w-full flex justify-center py-12 px-12">
+          <div className="w-full max-w-md rounded-lg shadow-lg border border-gray-300 py-2 px-4 max-h-[30vh] flex flex-col gap-y-10">
             <div className="px-4 sm:px-0 text-center">
               <h3 className="text-2xl font-semibold text-gray-900">Welcome</h3>
               <p className="mt-1 max-w-2xl text-sm text-gray-500">

@@ -5,7 +5,7 @@ import {
   LinkAuthenticationElement,
 } from "@stripe/react-stripe-js";
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import apiURL from "../../../api";
 import { AuthContext } from "../../../AuthProvider";
 
@@ -16,6 +16,8 @@ const CheckoutForm = () => {
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const { total } = location.state || { total: 0 };
 
   const { userId } = useContext(AuthContext);
 
@@ -80,7 +82,11 @@ const CheckoutForm = () => {
         className="btn"
       >
         <span id="button-text">
-          {loading ? <div className="spinner" id="spinner"></div> : "Pay now"}
+          {loading ? (
+            <div className="spinner" id="spinner"></div>
+          ) : (
+            `Pay now ($${total})`
+          )}
         </span>
       </button>
       {error && <div id="payment-error">{error}</div>}

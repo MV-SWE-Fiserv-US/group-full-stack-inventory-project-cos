@@ -12,11 +12,11 @@ const Cart = () => {
 
   const calculateTotal = () => {
     return cartItems
-        .reduce((total, item) => {
-            total += item.quantity * item.price;
-            return total;
-        }, 0)
-        .toFixed(2);
+      .reduce((total, item) => {
+        total += item.quantity * item.price;
+        return total;
+      }, 0)
+      .toFixed(2);
   };
 
   const expandCartItems = async (cart) => {
@@ -111,7 +111,7 @@ const Cart = () => {
   }, []);
 
   return (
-    <section className="w-full h-screen bg-gradient-to-b from-slate-100 to-slate-300 p-6 flex flex-col items-center justify-center px-20">
+    <section className="w-full p-6 flex flex-col items-center justify-center px-20">
       {isLoggedIn ? (
         <>
           <div className="w-full flex justify-between px-12">
@@ -122,8 +122,8 @@ const Cart = () => {
               Checkout
             </h2>
           </div>
-          <div className="w-full h-[90%] flex rounded-lg shadow-lg border border-gray-300 divide-x divide-gray-400 bg-white">
-            <div className="w-1/2 h-full overflow-y-auto px-12 py-4">
+          <div className="w-full lg:min-h-[600px] flex flex-col lg:flex-row rounded-lg shadow-lg border border-gray-300 divide-x divide-gray-400 bg-white">
+            <div className="lg:w-1/2 h-full overflow-y-auto px-12 py-4">
               {cartItems.length === 0 ? (
                 <p className="text-gray-600 text-center">Your cart is empty.</p>
               ) : (
@@ -186,7 +186,7 @@ const Cart = () => {
                 </>
               )}
             </div>
-            <div className="w-1/2 h-full overflow-y-auto px-12 py-12 flex flex-col justify-start">
+            <div className="lg:w-1/2 overflow-y-auto px-12 py-12 flex flex-col justify-between">
               <article className="text-pretty">
                 {cartItems.map((item) => {
                   return (
@@ -203,19 +203,29 @@ const Cart = () => {
                 })}
                 <div className="flex justify-between w-full font-extrabold text-sm">
                   <p className="w-1/2">Tax</p>
-                  <p>${(total * .07).toFixed(2)}</p>
+                  <p>${(total * 0.07).toFixed(2)}</p>
                 </div>
               </article>
-              <div className="mt-6 flex justify-between items-center border-t pt-4">
-                <span className="text-lg font-bold text-gray-800">Total:</span>
-                <span className="text-lg font-bold text-gray-900">
-                  ${(total * 1.07).toFixed(2)}
-                </span>
+              <div>
+                <div className="mt-6 flex justify-between items-center border-t pt-4">
+                  <span className="text-lg font-bold text-gray-800">
+                    Total:
+                  </span>
+                  <span className="text-lg font-bold text-gray-900">
+                    ${(total * 1.07).toFixed(2)}
+                  </span>
+                </div>
+                <button
+                  className="w-full mt-4 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-500 "
+                  onClick={() =>
+                    navigate("/checkout", {
+                      state: { total: (total * 1.07).toFixed(2) },
+                    })
+                  }
+                >
+                  Checkout
+                </button>
               </div>
-
-              <button className="w-full mt-4 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={() => navigate("/checkout")}>
-                Checkout
-              </button>
             </div>
           </div>
         </>
@@ -230,7 +240,6 @@ const Cart = () => {
       )}
     </section>
   );
-
 };
 
 export default Cart;
